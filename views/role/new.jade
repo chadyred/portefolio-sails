@@ -1,0 +1,23 @@
+extends ../admin/layout
+
+block main
+	h3 Création d'un role 
+
+	form(action='/role/create', method='POST', role='form')
+		legend Nouveau role !
+		.form-group
+
+			label(for='libelle') Libelle
+			input.form-control(type='text', name="libelle", placeholder='Libelle...')
+
+			
+			label(for='menu') Menu
+			select(name="menu", id="menu").form-control
+				option(value="-1") -- Choisissez un menu --
+				each menu in menus
+					option(value="#{menu.id}") #{menu.titre}
+				else
+					| Pas de menus
+
+		button.btn.btn-primary(type='submit') Envoyer
+		

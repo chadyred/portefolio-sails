@@ -1,0 +1,31 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+
+			h3 Menu n° #{menu.id}
+
+			.table-responsive
+				table.table.table-hover
+					thead
+						tr 
+							th Titre
+							th Items
+							th Role
+							th Actions
+					tbody
+						tr
+							td #{menu.titre}
+							td 
+								ul
+									if menu.items.length > 0
+										each item in menu.items
+											li #{item.titre}
+									else
+										| Pas d'item !
+							td #{(menu.role) ? menu.role.libelle : "Pas de rôle !"}
+							td
+								a(href="/menu/edit/#{menu.id}")
+									span.glyphicon.glyphicon-pencil
+

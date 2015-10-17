@@ -1,0 +1,23 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+
+			h3 role n° #{role.id}
+
+			.table-responsive
+				table.table.table-hover
+					thead
+						tr 
+							th Libelle
+							th Menu
+							th Actions
+					tbody
+						tr
+							td #{role.libelle}
+							td #{(role.menu) ? role.menu.titre : "Pas de menu !"}
+							td
+								a(href="/role/edit/#{role.id}")
+									span.glyphicon.glyphicon-pencil
+

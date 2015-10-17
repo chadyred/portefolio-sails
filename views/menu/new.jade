@@ -1,0 +1,22 @@
+extends ../admin/layout
+
+block main
+	h3 Création d'un menu 
+
+	form(action='/menu/create', method='POST', role='form')
+		legend Nouveau menu !
+		.form-group
+			label(for='titre') Titre
+			input.form-control(type='text', name="titre", placeholder='Titre...')
+
+			//- TODO
+			//- each item in items
+			//- 	.checkbox
+			//- 		label
+			//- 		input(type='checkbox', value='#{item.id}', name='#{item.titre}') 
+			//- 		| #{item.titre}
+			//- else
+			//- 	| Pas d'items
+
+		button.btn.btn-primary(type='submit') Envoyer
+		

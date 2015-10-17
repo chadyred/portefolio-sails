@@ -1,0 +1,21 @@
+extends ../admin/layout
+
+block main
+	h3 Edition d'un role 
+
+	form(action='/role/update/#{role.id}', method='POST', role='form')
+		legend Edition du role n° #{role.id}
+		.form-group
+
+			label(for='libelle') Libelle
+			input.form-control(type='text', value="#{role.libelle}", name='libelle' placeholder='Libelle...')
+				
+			label(for="menu") Choix menu
+			select(id="menu", name="menu").form-control
+				option(value="-1") -- Choisissez un menu --
+				each menu in menus
+					option(value="#{menu.id}" selected=((role.menu) && role.menu.id == menu.id)) #{menu.titre}
+				else
+					| Pas de menu
+
+		button.btn.btn-primary(type='submit') Envoyer

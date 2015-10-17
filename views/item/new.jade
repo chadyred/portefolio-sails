@@ -1,0 +1,28 @@
+extends ../admin/layout
+
+block main
+	h3 Création d'un item 
+
+	form(action='/item/create', method='POST', role='form')
+		legend Nouvel item !
+		.form-group
+			label(for='titre') Titre
+
+			input.form-control(type='text', name="titre", placeholder='Titre...')
+				
+			label(for='menu') Menu conteneur qui possède l'item
+			select(name="menu", id="menu").form-control 
+				option(value="-1") -- Selectionner un menu conteneur --
+				each menu in menus
+					option(value="#{menu.id}") #{menu.titre}
+
+			label(for='submenu') Sous menu que contient l'item (Différent du menu conteneur)
+			select(name="submenu", id="submenu").form-control 
+				option(value="-1") -- Sélectionner un sous-menu que contient cet item --
+					each menu in menus
+						option(value="#{menu.id}") #{menu.titre}
+
+
+
+		button.btn.btn-primary(type='submit') Envoyer
+		

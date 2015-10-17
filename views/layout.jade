@@ -1,0 +1,76 @@
+doctype 
+html
+	head
+		title Mon portfolio
+
+
+		// STYLES
+		link(rel="stylesheet", href="/styles/css/admin.css")
+		link(rel="stylesheet", href="/styles/css/custom.css")
+		link(rel="stylesheet", href="/styles/importer.css")
+		link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+		// STYLES END
+	body
+		.container-fluid.header-container 
+			header
+				img(src="/images/banniere_fc.jpg", alt="").img-responsive
+		#nav-wrapper
+			nav(role="navigation", data-spy="affix").navbar.navbar-inverse.main-nav
+				.navbar-header
+					button(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse").navbar-toggle.collapsed
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a(href="#" ).navbar-brand Portefolio
+				.collapse.navbar-collapse.navbar-ex1-collapse
+					ul.nav.navbar-nav 
+						each menu in menus
+							if (typeof menu.role !== "undefined") && menu.role.libelle == "main"
+								each item in menu.items
+									if item.subMenu == null
+										li: a(href='#{(item.article) ? "/article/show/" + item.article : "#"}') #{item.titre}
+									else
+										li.dropdown
+											a.dropdown-toggle(href='#{(item.article) ? "/article/show/" + item.article : "#"}', data-toggle="dropdown",role="button", aria-expanded="false")
+												| #{item.titre}
+												span.caret
+											ul.dropdown-menu(role="menu")
+												each subMenu in item.subMenu.items
+
+													=console.log("subMenu" + subMenu[0])
+
+
+		.container-fluid
+			block content
+				
+		footer
+			ul(class="list-unstyled list-inline text-center")
+				li
+					ul(class="list-unstyled")
+						li Item 
+						li Item 
+						li Item 
+				li
+					ul(class="list-unstyled")
+						li Item 
+						li Item 
+						li Item 
+				li
+					ul(class="list-unstyled")
+						li Item 
+						li Item 
+						li Item 
+
+			p.text-center.copyright
+				span(class="glyphicon glyphicon-knight" aria-hidden="true")  CELLIER Florian
+
+
+		// SCRIPTS
+		script(src="/js/dependencies/sails.io.js")
+		script(src="/vendor/jquery/dist/jquery.js")
+		script(src="/vendor/bootstrap/dist/js/bootstrap.min.js")
+		script(src="/vendor/holderjs/holder.js")
+		script(src="/js/main.js")
+		// SCRIPTS END 
+		

@@ -1,0 +1,25 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			h1 Edition d'un article - n° #{article.id}
+
+			//- Action automatiquement créé grâce au blueprints action : /controller/action
+			form(method="POST" action="/article/update/#{article.id}")
+				label(for="titre") Titre
+				input(type="text" name="titre" placeholder="Mon super article..." value="#{article.titre}").form-control
+
+				label(for="contenu") Contenu
+				textarea(name="contenu").form-control
+					| #{article.contenu}
+
+				label(for="item") Item
+				select(id="item", name="item").form-control
+					option(value="-1") -- Choisissez de l'item --
+					each item in items
+						option(value="#{item.id}" selected=((article.item) && article.item.id == item.id)) #{item.titre}
+					else
+						| Pas de menu
+
+				button.btn.btn-primary(type='submit') Envoyer

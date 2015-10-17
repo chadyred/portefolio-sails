@@ -1,0 +1,42 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+
+			h4 Voici l'ensemble des articles
+
+			a(href="/article/new") 
+				span.glyphicon.glyphicon-plus Ajouter un article
+
+			if typeof articles !== "undefined" && articles.length > 0
+				.table-responsive
+					table.table.table-hover
+						thead
+							tr
+								th Article
+								th Date de création
+								th Item
+								th Actions
+						tbody
+
+						//- Je parcours mes article ici
+						each article in articles
+							tr
+								td #{article.titre} - 
+								td Créé le #{moment(article.createdAt).format('DD MM YYYY')} soit #{moment(article.createdAt).from()}
+								td #{(article.item) ? article.item.titre : "Pas d'item ! "}
+								td 
+									ul.list-unstyled.list-inline
+										li
+											a(href="/article/edit/#{article.id}")
+												span.glyphicon.glyphicon-pencil
+										li
+											a(href="/article/show/#{article.id}")
+												span.glyphicon.glyphicon-eye-open
+										li
+											a(href="/article/destroy/#{article.id}")
+												span.glyphicon.glyphicon-warning-sign
+
+			else
+				h4 Pas d'article

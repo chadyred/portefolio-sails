@@ -1,0 +1,42 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+
+			h4 Voici l'ensemble de mes menus
+
+			a(href="/menu/new") 
+				span.glyphicon.glyphicon-plus Ajouter un menu
+
+			.table-responsive
+				table.table.table-hover
+					thead
+						tr
+							th Titre
+							th Date de création
+							th Role
+							th Item conteneur
+							th Actions
+					tbody
+						each menu in menus
+							tr
+								td #{menu.titre} 
+								td #{moment(menu.createdAt).format('DD MM YYYY')} soit #{moment(menu.createdAt).from()}
+								td #{(menu.role) ? menu.role.libelle : "Pas de rôle !"}
+								td #{(menu.itemWrapper) ? menu.itemWrapper.titre : "Pas d'item conteneur !"}
+								td 
+									ul.list-unstyled.list-inline
+										li
+											a(href="/menu/edit/#{menu.id}")
+												span.glyphicon.glyphicon-pencil
+										li
+											a(href="/menu/show/#{menu.id}")
+												span.glyphicon.glyphicon-eye-open
+										li
+											a(href="/menu/destroy/#{menu.id}")
+												span.glyphicon.glyphicon-warning-sign
+						else
+							p Pas de menu
+
+			hr

@@ -1,0 +1,18 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			h1 Créer un article
+
+			//- Action automatiquement créé grâce au blueprints action : /controller/action
+			form(method="POST" action="/article/create")
+
+
+				label(for='titre') Titre de l'article 
+				input(type="text" name="titre" placeholder="Mon super article...").form-control
+
+				label(for='contenu') Contenu de l'article
+				textarea(name="contenu", id="contenu").form-control
+
+				button.btn.btn-primary(type='submit') Envoyer

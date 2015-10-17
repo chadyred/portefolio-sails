@@ -1,0 +1,41 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			h4 Voici l'ensemble de mes items
+
+			a(href="/item/new") 
+				span.glyphicon.glyphicon-plus Ajouter un item
+
+			.table-responsive
+				table.table.table-hover
+					thead
+						tr
+							th Titre
+							th Date de création
+							th Menu
+							th Sous menu
+							th Actions
+					tbody
+						each item in items
+							tr
+								td #{item.titre} 
+								td #{moment(item.createdAt).format('DD MM YYYY')} soit #{moment(item.createdAt).from()}
+								td #{(typeof item.menu != "undefined") ? item.menu.titre : "Pas de menu !"}
+								td #{(item.subMenu) ? item.subMenu.titre : "Pas de sous menu !"}
+								td
+									ul.list-unstyled.list-inline
+										li
+											a(href="/item/edit/#{item.id}")
+												span.glyphicon.glyphicon-pencil
+										li
+											a(href="/item/show/#{item.id}")
+												span.glyphicon.glyphicon-eye-open
+										li
+											a(href="/item/destroy/#{item.id}")
+												span.glyphicon.glyphicon-warning-sign
+						else
+							p Pas de menu !
+
+			hr

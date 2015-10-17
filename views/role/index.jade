@@ -1,0 +1,40 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+
+			h4 Voici l'ensemble des rôles
+
+			a(href="/role/new") 
+				span.glyphicon.glyphicon-plus Ajouter un role
+
+			.table-responsive
+				table.table.table-hover
+					thead
+						tr
+							th Role
+							th Date de création
+							th Menu
+							th Actions
+					tbody
+						each role in roles
+							tr
+								td #{role.libelle} 
+								td #{moment(role.createdAt).format('DD MM YYYY')} soit #{moment(role.createdAt).from()}
+								td #{(role.menu) ? role.menu.titre : "Pas de menu !"}
+								td 
+									ul.list-unstyled.list-inline
+										li
+											a(href="/role/edit/#{role.id}")
+												span.glyphicon.glyphicon-pencil
+										li
+											a(href="/role/show/#{role.id}")
+												span.glyphicon.glyphicon-eye-open
+										li
+											a(href="/role/destroy/#{role.id}")
+												span.glyphicon.glyphicon-warning-sign
+						else
+							p Pas de role
+
+			hr

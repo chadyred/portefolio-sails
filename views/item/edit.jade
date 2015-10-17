@@ -1,0 +1,26 @@
+extends ../admin/layout
+
+block main
+	h3 Edition d'un item 
+
+	form(action='/item/update/#{item.id}', method='POST', role='form')
+		legend Edition du item n° #{item.id}
+		.form-group
+
+			label(for='titre') Titre
+			input.form-control(type='text', value="#{item.titre}", name='titre' placeholder='Titre...')
+
+			label(for='menu') Menu conteneur qui possède l'item
+			select(name="menu", id="menu").form-control 
+				option(value="-1") -- Select One --
+				each menu in menus					
+					option(value="#{menu.id}" selected=item.menu == menu.id) #{menu.titre}
+
+			label(for='submenu') Sous menu que contient l'item (Différent du menu conteneur)
+			select(name="submenu", id="submenu").form-control
+				option(value="-1") -- Sélectionner un sous-menu que contient cet item --
+					each menu in menus
+						//- Vérification au préalable de l'existene d'un sous-menu !
+						option(value="#{menu.id}" selected=((typeof item.subMenu != "undefined") && item.subMenu.id == menu.id)) #{menu.titre}
+
+		button.btn.btn-primary(type='submit') Envoyer

@@ -1,0 +1,26 @@
+extends ../admin/layout
+
+block main
+	.row
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+
+			h3 Item n° #{item.id}
+
+			.table-responsive
+				table.table.table-hover
+					thead
+						tr 
+							th Titre
+							th Menu
+							th Actions
+					tbody
+						tr
+							td #{item.titre}
+							td 							
+								if item.menu != null									
+									a(href="/menu/show/#{item.menu.id}") #{item.menu.titre}
+								else
+									| Pas de menu !
+							td
+								a(href="/item/edit/#{item.id}")
+									span.glyphicon.glyphicon-pencil

@@ -1,0 +1,21 @@
+extends ../admin/layout
+
+block main
+	h3 Edition d'un menu 
+
+	form(action='/menu/update/#{menu.id}', method='POST', role='form')
+		legend Edition du menu n° #{menu.id}
+		.form-group
+
+			label(for='titre') Titre
+			input.form-control(type='text', value="#{menu.titre}", name='titre' placeholder='Titre...')
+			
+			//- TODO				
+			//- each item in items
+			//- 	.checkbox
+			//- 		label
+			//- 		input(type='checkbox', value='#{item.id}', name='#{item.titre}') 
+			//- 		| #{item.titre}
+			//- else
+			//- 	| Pas d'items
+		button.btn.btn-primary(type='submit') Envoyer

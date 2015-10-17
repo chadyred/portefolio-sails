@@ -1,0 +1,70 @@
+/* Ce block est positionné de manière relative. Ainsi, tout ce qui sera en abolut dans ce block, sera positionnable en (0;0)
+à partir du haut gauche de ce block*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Marge extérieur du bas de la hauteur du footer */
+  margin-bottom: 100px;
+}
+
+/* Footer : il est collé en bas parce qu'une taille a été fixé !*/
+footer {
+    height: 100px;
+	background-color: black;
+	width: 100%;
+	color: white;
+    position: absolute;
+    	bottom: 0;
+}
+
+/*La barre de menu garde sa taille*/
+nav[data-spy="affix"] {
+	min-width:100%;
+}
+
+/* Elle reste en haut une fois la zone atteinte */
+.affix {
+	top: 0;
+}
+
+/*On met une taille minimal, sinon ce block vaudra 0 car le menu présent en sont sein est en position fixed et nappartient
+plus à ce block. Mais il faut cependant que la page ne passe pas par dessous directement*/
+#nav-wrapper {
+	min-height: 60px;
+	margin-bottom: 15px; /*On rajoute la marge qui est de base autour du menu*/
+}
+
+/*On fait passer en dessus le menu qui est en position fixe */
+.main-nav {
+	z-index: 2;
+}
+
+
+
+.copyright {
+	font-size: 0.8em;
+	margin: 0;
+}
+
+/*Gestion de la banière*/
+@media (max-width: 768px) {
+    .affix {
+        position: fixed;
+    }
+
+    .header-container {
+    	display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .affix {
+        position: static;
+    }
+    .header-container {
+    	display: block;
+    }
+}

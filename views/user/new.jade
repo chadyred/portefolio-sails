@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+	h1 Signup
+
+	form(method="POST" action="/user/create")
+		input(type="email" name="email")
+		input(type="password" name="password")
+		input(type="submit" value="submit")
